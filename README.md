@@ -20,3 +20,48 @@ executes privileged commands safely.
 - ⚙️ **Execute commands as root:**  
   ```bash
   syscall <command>
+
+## 🚀 Usage
+
+Run any command as root via syscall:
+
+```bash
+# Update system packages
+syscall pacman -Syu
+
+# Restart a system service
+syscall systemctl restart NetworkManager
+
+# Edit a root-owned file
+syscall nano /etc/hosts
+
+
+---
+
+### **Installation from AUR**
+
+```markdown
+## 📦 Installation
+
+### From the AUR
+
+Install directly using an AUR helper like yay or paru:
+
+```bash
+yay -S syscall
+
+
+---
+
+### **Manual Installation**
+
+```markdown
+### Manual Install
+
+Clone the repository and build the package manually:
+
+```bash
+git clone https://github.com/YOURNAME/syscall.git
+cd syscall
+makepkg -si
+
