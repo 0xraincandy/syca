@@ -1,6 +1,6 @@
 pkgname=syscall
-pkgver=1.0
-pkgrel=1
+pkgver=1.1
+pkgrel=2
 pkgdesc="Sudo-like tool using PAM authentication with system-wide user cache"
 arch=('x86_64' 'aarch64')
 url="https://github.com/0xraincandy/syscall"
