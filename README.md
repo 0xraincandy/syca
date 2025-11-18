@@ -16,8 +16,9 @@ executes privileged commands safely.
 ## ✨ Features
 
 - 🔐 **PAM-based password authentication**  
-- 🕒 **System-wide privilege cache** (shared across all terminals)  
-- ⚙️ **Execute commands as root:**  
+- 🕒 **System-wide privilege cache** (shared across all terminals)
+- 👥 User must be added to **group wheel** to be authorized.
+- ⚙️ **Execute commands as root:**
 ```bash
 syscall <command>
 ```
