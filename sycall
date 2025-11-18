@@ -9,7 +9,7 @@ import termios
 import tty
 import signal
 
-def masked_input(prompt="[sycall] password: "):
+def masked_input(prompt="[syscall] password: "):
     """Prompt for password, displaying * for each character, and allow Ctrl+C."""
     sys.stdout.write(prompt)
     sys.stdout.flush()
@@ -98,7 +98,7 @@ def pam_authenticate():
     """Authenticate using PAM via python-pam"""
     import pam
     auth = pam.pam()
-    pw = masked_input("[sycall] password: ")
+    pw = masked_input("[syscall] password: ")
     if auth.authenticate(os.getlogin(), pw, service="syscall"):
         save_timestamp()
         return True
