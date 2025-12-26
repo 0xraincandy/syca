@@ -15,7 +15,12 @@ executes privileged commands safely.
 
 ## ✨ Features
 
-- 🔐 **PAM-based password authentication**  
+
+- 🔐 **PAM-based password authentication**
+- 🔒 **Authentication Cache**
+Syscall stores authentication securely using a root-owned state file accessed
+through the setuid helper. Once authenticated, you won’t be prompted again until
+the cache expires.
 - 🕒 **System-wide privilege cache** (shared across all terminals)
 - 👥 User must be added to **group wheel** to be authorized.
 - ⚙️ **Execute commands as root:**
@@ -88,9 +93,3 @@ git clone https://github.com/0xraincandy/syscall.git
 cd syscall
 makepkg -si
 ```
-
-🔒 Authentication Cache
-
-Syscall stores authentication securely using a root-owned state file accessed
-through the setuid helper. Once authenticated, you won’t be prompted again until
-the cache expires.
