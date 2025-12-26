@@ -7,7 +7,7 @@ url="https://github.com/0xraincandy/syscall"
 license=('GPL')
 depends=('python' 'python-pam')
 makedepends=('gcc')
-source=('syscall' 'syscall-helper.c' 'syscall.pam' 'sycall')
+source=('syca' 'syscall-helper.c' 'syscall.pam')
 sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
