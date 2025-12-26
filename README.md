@@ -15,7 +15,7 @@ executes privileged commands safely.
 
 ## ✨ Features
 
-**🔒 Authentication Cache**
+- **🔒 Authentication Cache**
 
 Syscall stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
