@@ -8,7 +8,7 @@ license=('GPL')
 depends=('python' 'python-pam')
 makedepends=('gcc')
 source=('syca' 'syscall-helper.c' 'syscall.pam')
-sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
     gcc syscall-helper.c -o syscall-helper
