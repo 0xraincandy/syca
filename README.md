@@ -23,7 +23,7 @@ executes privileged commands safely.
 syca <command>
 ```
 
-```
+
 - ⏱ **Temporary root access** via privilege cache:
 - Enable root access for a limited time:
 ```bash
