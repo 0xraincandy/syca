@@ -29,6 +29,7 @@ syca <command>
 ```bash
 syca --enable <minutes>
 ```
+
 - Disable the temporary root access manually:
 ```bash
 syca --disable
