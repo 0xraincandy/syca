@@ -20,24 +20,22 @@ executes privileged commands safely.
 - 👥 User must be added to **group wheel** to be authorized.
 - ⚙️ **Execute commands as root:**
 ```bash
-syscall <command>
+syca <command>
 ```
-or
-```bash
-sycall <command>
+
 ```
 - ⏱ **Temporary root access** via privilege cache:
 - Enable root access for a limited time:
 ```bash
-syscall --enable <minutes>
+syca --enable <minutes>
 ```
 - Disable the temporary root access manually:
 ```bash
-syscall --disable
+syca --disable
 ```
 - Check the current status of the root access cache:
 ```bash
-syscall --status
+syca --status
 ```
 
 ## 🚀 Usage
@@ -46,16 +44,16 @@ Run any command as root via syscall:
 
 Update system packages
 ```bash
-syscall pacman -Syu
+syca pacman -Syu
 ```
 Restart a system service
 ```bash
-syscall systemctl restart NetworkManager
+syca systemctl restart NetworkManager
 ```
 
 Edit a root-owned file
 ```bash
-syscall vim /etc/hosts
+syca vim /etc/hosts
 ```
 
 ---
