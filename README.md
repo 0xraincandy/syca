@@ -15,12 +15,13 @@ executes privileged commands safely.
 
 ## ✨ Features
 
+**🔒 Authentication Cache**
 
-- 🔐 **PAM-based password authentication**
-- 🔒 **Authentication Cache**
 Syscall stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
 the cache expires.
+
+- 🔐 **PAM-based password authentication**
 - 🕒 **System-wide privilege cache** (shared across all terminals)
 - 👥 User must be added to **group wheel** to be authorized.
 - ⚙️ **Execute commands as root:**
