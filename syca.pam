@@ -1,4 +1,4 @@
-# /etc/pam.d/syscall
+# /etc/pam.d/syca
 
 # Restrict to wheel group
 auth       required   pam_wheel.so group=wheel
