@@ -11,7 +11,7 @@ source=('syca' 'syca-helper.c' 'syca.pam')
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-    gcc syscall-helper.c -o syscall-helper
+    gcc syca-helper.c -o syca-helper
 }
 
 package() {
