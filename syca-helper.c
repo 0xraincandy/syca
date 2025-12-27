@@ -1,4 +1,4 @@
-// syscall-helper.c
+// syca-helper.c
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <stdio.h>
@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        fprintf(stderr, "syscall-helper: no command provided\n");
+        fprintf(stderr, "syca-helper: no command provided\n");
         return 1;
     }
 
