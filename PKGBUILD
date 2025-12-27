@@ -7,7 +7,7 @@ url="https://github.com/0xraincandy/syscall"
 license=('GPL')
 depends=('python' 'python-pam')
 makedepends=('gcc')
-source=('syca' 'syscall-helper.c' 'syscall.pam')
+source=('syca' 'syca-helper.c' 'syca.pam')
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
@@ -16,6 +16,6 @@ build() {
 
 package() {
     install -Dm755 "$srcdir/syca" "$pkgdir/usr/bin/syca"
-    install -Dm4755 "$srcdir/syscall-helper" "$pkgdir/usr/lib/syscall-helper"
-    install -Dm644 "$srcdir/syscall.pam" "$pkgdir/etc/pam.d/syscall"
+    install -Dm4755 "$srcdir/syca-helper" "$pkgdir/usr/lib/syca-helper"
+    install -Dm644 "$srcdir/syca.pam" "$pkgdir/etc/pam.d/syca"
 }
