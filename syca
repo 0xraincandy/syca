@@ -63,7 +63,7 @@ CACHE_DIR = RUNTIME_DIR / "syca"
 CACHE_FILE = CACHE_DIR / "timestamp"
 CONFIG_FILE = CACHE_DIR / "config"
 
-HELPER = "/usr/lib/syscall-helper"
+HELPER = "/usr/lib/syca-helper"
 DEFAULT_MINUTES = 3
 
 
@@ -115,7 +115,7 @@ def pam_authenticate_once():
     import pam
     pw = masked_input("[syca] password: ")
     auth = pam.pam()
-    return auth.authenticate(os.getlogin(), pw, service="syscall")
+    return auth.authenticate(os.getlogin(), pw, service="syca")
 
 def pam_authenticate_loop():
 
@@ -157,7 +157,7 @@ def enable_cache(minutes):
 def main():
     ensure_wheel_member()
 
-    parser = argparse.ArgumentParser(description="syscall — minimal sudo-like privilege elevation tool.")
+    parser = argparse.ArgumentParser(description="syca — minimal sudo-like privilege elevation tool.")
     parser.add_argument("--enable", type=int, help="Enable passwordless mode for N minutes")
     parser.add_argument("--disable", action="store_true", help="Disable passwordless mode")
     parser.add_argument("--status", action="store_true", help="Show current passwordless status")
