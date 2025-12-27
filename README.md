@@ -1,4 +1,4 @@
-# Syscall
+# Syca
 
 [![AUR](https://img.shields.io/aur/version/syscall?logo=arch-linux&label=AUR)](https://aur.archlinux.org/packages/syscall)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen)]()
@@ -7,7 +7,7 @@
 A minimal **sudo-like privilege elevation tool for Linux**, written in **Python + C**  
 with **PAM authentication** and **system-wide secure password caching**.
 
-Syscall acts as a clean, lightweight alternative to sudo/doas while keeping strict  
+Syca acts as a clean, lightweight alternative to sudo/doas while keeping strict  
 security boundaries. Authentication is performed via PAM, and a secure C setuid helper  
 executes privileged commands safely.
 
@@ -17,7 +17,7 @@ executes privileged commands safely.
 
 - **🔒 Authentication Cache**
 
-Syscall stores authentication securely using a root-owned state file accessed
+Syca stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
 the cache expires.
 
@@ -47,7 +47,7 @@ syca --status
 
 ## 🚀 Usage
 
-Run any command as root via syscall:
+Run any command as root via Syca:
 
 Update system packages
 ```bash
@@ -74,13 +74,13 @@ syca vim /etc/hosts
 Install directly using an AUR helper;
 
 ```bash
-yay -S syscall
+yay -S syca
 ```
 ```bash
-paru -S syscall
+paru -S syca
 ```
 ```bash
-ame ins syscall
+ame ins syca
 ```
 
 ### **Manual Installation**
@@ -90,7 +90,7 @@ ame ins syscall
 Clone the repository and build the package manually:
 
 ```bash
-git clone https://github.com/0xraincandy/syscall.git
-cd syscall
+git clone https://github.com/0xraincandy/syca.git
+cd syca
 makepkg -si
 ```
