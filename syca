@@ -14,18 +14,18 @@ def ensure_wheel_member():
     try:
         wheel_gid = grp.getgrnam("wheel").gr_gid
     except KeyError:
-        print("[syscall] ERROR: group 'wheel' does not exist!")
+        print("[syca] ERROR: group 'wheel' does not exist!")
         exit(1)
 
     user_groups = os.getgroups()
     user_gid = os.getgid()
 
     if wheel_gid not in user_groups and wheel_gid != user_gid:
-        print("[syscall] Permission denied: user is not in wheel group")
+        print("[syca] Permission denied: user is not in wheel group")
         exit(1)
 
 
-def masked_input(prompt="[syscall] password: "):
+def masked_input(prompt="[syca] password: "):
     sys.stdout.write(prompt)
     sys.stdout.flush()
     password = ""
@@ -59,7 +59,7 @@ def masked_input(prompt="[syscall] password: "):
 
 
 RUNTIME_DIR = Path(os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}"))
-CACHE_DIR = RUNTIME_DIR / "syscall"
+CACHE_DIR = RUNTIME_DIR / "syca"
 CACHE_FILE = CACHE_DIR / "timestamp"
 CONFIG_FILE = CACHE_DIR / "config"
 
@@ -113,7 +113,7 @@ def seconds_left():
 def pam_authenticate_once():
 
     import pam
-    pw = masked_input("[syscall] password: ")
+    pw = masked_input("[syca] password: ")
     auth = pam.pam()
     return auth.authenticate(os.getlogin(), pw, service="syscall")
 
@@ -122,7 +122,7 @@ def pam_authenticate_loop():
     while True:
         if pam_authenticate_once():
             return True
-        print("[syscall] Incorrect password. Try again.")
+        print("[syca] Incorrect password. Try again.")
 
 
 
@@ -142,14 +142,14 @@ def run_command(cmd):
 
 def enable_cache(minutes):
     save_config(minutes)
-    print(f"[syscall] Enable passwordless mode for {minutes} minutes")
+    print(f"[syca] Enable passwordless mode for {minutes} minutes")
 
 
     if pam_authenticate_loop():
         save_timestamp()
-        print(f"[syscall] Passwordless mode enabled for {minutes} minutes.")
+        print(f"[syca] Passwordless mode enabled for {minutes} minutes.")
     else:
-        print("[syscall] Authentication failed. Cache not enabled.")
+        print("[syca] Authentication failed. Cache not enabled.")
 
 
 
@@ -172,15 +172,15 @@ def main():
 
         if args.disable:
             clear_cache()
-            print("[syscall] Passwordless mode disabled.")
+            print("[syca] Passwordless mode disabled.")
             return
 
         if args.status:
             if cache_valid():
                 left = seconds_left()
-                print(f"[syscall] Passwordless mode active ({left}s remaining).")
+                print(f"[syca] Passwordless mode active ({left}s remaining).")
             else:
-                print("[syscall] Passwordless mode is NOT active.")
+                print("[syca] Passwordless mode is NOT active.")
             return
 
         if not args.cmd:
