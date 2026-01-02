@@ -1,0 +1,147 @@
+#!/usr/bin/env ruby
+require 'etc'
+require 'fileutils'
+require 'optparse'
+require 'time'
+
+RUNTIME_DIR = ENV['XDG_RUNTIME_DIR'] || "/run/user/#{Process.uid}"
+CACHE_DIR   = File.join(RUNTIME_DIR, "syca")
+CACHE_FILE  = File.join(CACHE_DIR, "timestamp")
+CONFIG_FILE = File.join(CACHE_DIR, "config")
+HELPER      = "/usr/lib/syca-helper"
+PAM_HELPER  = "/usr/lib/syca-pam-auth.py"
+DEFAULT_MINUTES = 3
+
+def ensure_wheel_member
+  wheel_gid = Etc.getgrnam('wheel').gid rescue nil
+  if wheel_gid.nil?
+    puts "[syca] ERROR: group 'wheel' does not exist!"
+    exit 1
+  end
+  unless Process.groups.include?(wheel_gid) || Process.gid == wheel_gid
+    puts "[syca] Permission denied: user is not in wheel group"
+    exit 1
+  end
+end
+
+def load_config
+  File.exist?(CONFIG_FILE) ? (Integer(File.read(CONFIG_FILE).strip) rescue DEFAULT_MINUTES) : DEFAULT_MINUTES
+end
+
+def save_config(minutes)
+  FileUtils.mkdir_p(CACHE_DIR)
+  File.write(CONFIG_FILE, minutes.to_s)
+end
+
+def save_timestamp
+  FileUtils.mkdir_p(CACHE_DIR)
+  File.write(CACHE_FILE, Time.now.to_i.to_s)
+end
+
+def load_timestamp
+  File.exist?(CACHE_FILE) ? (Integer(File.read(CACHE_FILE).strip) rescue nil) : nil
+end
+
+def clear_cache
+  File.delete(CACHE_FILE) if File.exist?(CACHE_FILE)
+end
+
+def disable_cache
+  clear_cache
+  File.delete(CONFIG_FILE) if File.exist?(CONFIG_FILE)
+  puts "[syca] Passwordless mode disabled."
+end
+
+def cache_valid?
+  ts = load_timestamp
+  return false if ts.nil? || !File.exist?(CONFIG_FILE)
+  (Time.now.to_i - ts) < load_config * 60
+end
+
+def seconds_left
+  ts = load_timestamp
+  return 0 if ts.nil? || !File.exist?(CONFIG_FILE)
+  [(load_config * 60 - (Time.now.to_i - ts)), 0].max
+end
+
+def pam_authenticate_once
+  system(PAM_HELPER)
+end
+
+def pam_authenticate_loop
+  loop do
+    return true if pam_authenticate_once
+    puts "[syca] Incorrect password. Try again."
+  end
+end
+
+def run_command(cmd)
+  begin
+    if cache_valid?
+      success = system(HELPER, *cmd)
+    elsif File.exist?(CONFIG_FILE)
+      if pam_authenticate_loop
+        success = system(HELPER, *cmd)
+        save_timestamp if success
+      else
+        success = false
+      end
+    else
+      pam_authenticate_loop
+      success = system(HELPER, *cmd)
+    end
+    success
+  rescue Interrupt
+    puts "\n[syca] Command cancelled by user."
+    false
+  end
+end
+
+def enable_cache(minutes)
+  save_config(minutes)
+  puts "[syca] Enable passwordless mode for #{minutes} minutes"
+  if pam_authenticate_loop
+    save_timestamp
+    puts "[syca] Passwordless mode enabled for #{minutes} minutes."
+  else
+    puts "[syca] Authentication failed. Cache not enabled."
+  end
+end
+
+# --- CLI ---
+ensure_wheel_member
+
+options = {}
+parser = OptionParser.new do |o|
+  o.on("--enable N", Integer) { |v| options[:enable] = v }
+  o.on("--disable") { options[:disable] = true }
+  o.on("--status") { options[:status] = true }
+end
+
+parser.order! rescue nil
+
+if options[:enable]
+  enable_cache(options[:enable])
+  exit
+end
+
+if options[:disable]
+  disable_cache
+  exit
+end
+
+if options[:status]
+  if cache_valid?
+    puts "[syca] Passwordless mode active (#{seconds_left}s remaining)."
+  else
+    puts "[syca] Passwordless mode is NOT active."
+  end
+  exit
+end
+
+if ARGV.empty?
+  puts "Usage: syca <command>"
+  exit
+end
+
+exit(run_command(ARGV))

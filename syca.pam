@@ -1,0 +1,5 @@
+#%PAM-1.0
+auth       required   pam_wheel.so group=wheel
+auth       required   pam_unix.so nullok try_first_pass
+account    include    system-auth
+session    include    system-auth
