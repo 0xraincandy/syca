@@ -83,9 +83,7 @@ paru -S syca
 ame ins syca
 ```
 
-### **Manual Installation**
-
-### Manual Install
+### Manual Installation
 
 Clone the repository and build the package manually:
 
