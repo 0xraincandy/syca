@@ -1,6 +1,6 @@
 pkgname=syca
 pkgver=1.6
-pkgrel=2
+pkgrel=3
 pkgdesc="Minimal sudo‑like privilege elevation tool for Linux"
 arch=('x86_64' 'aarch64')
 url="https://github.com/0xraincandy/syca"
