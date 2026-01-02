@@ -94,3 +94,6 @@ git clone https://github.com/0xraincandy/syca.git
 cd syca
 makepkg -si
 ```
+
+### **Known Bugs **
+- when changing user using su, then the password wont get accepted
