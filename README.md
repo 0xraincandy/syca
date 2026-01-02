@@ -95,5 +95,5 @@ cd syca
 makepkg -si
 ```
 
-### **Known Bugs **
+### **Known Bugs**
 - when changing user using su, then the password wont get accepted
