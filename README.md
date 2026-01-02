@@ -2,7 +2,7 @@
 
 [![AUR](https://img.shields.io/aur/version/syca?logo=arch-linux&label=AUR&cacheSeconds=5)](https://aur.archlinux.org/packages/syca)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen)]()
-[![Language](https://img.shields.io/badge/language-Python%20%2B%20C-blue)]()
+[![Language](https://img.shields.io/badge/language-Ruby-red)]()
 
 A minimal **sudo-like privilege elevation tool for Linux**, written in **Ruby,** **Python + C**  
 with **PAM authentication** and **system-wide secure password caching**.
