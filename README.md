@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen)]()
 [![Language](https://img.shields.io/badge/language-Python%20%2B%20C-blue)]()
 
-A minimal **sudo-like privilege elevation tool for Linux**, written in **Python + C**  
+A minimal **sudo-like privilege elevation tool for Linux**, written in **Ruby** **Python + C**  
 with **PAM authentication** and **system-wide secure password caching**.
 
 Syca acts as a clean, lightweight alternative to sudo/doas while keeping strict  
