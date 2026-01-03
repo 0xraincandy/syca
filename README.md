@@ -94,4 +94,4 @@ makepkg -si
 ```
 
 ### **Known Bugs**
-- when changing user using su, then the password wont get accepted
+- When changing user using su, then the password wont get accepted.
