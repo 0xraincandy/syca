@@ -1,6 +1,6 @@
 pkgname=syca
-pkgver=1.6
-pkgrel=4
+pkgver=1.7
+pkgrel=1
 pkgdesc="Alternative to base-devel with syca as sudo-like elevation tool"
 arch=('x86_64' 'aarch64')
 url="https://github.com/0xraincandy/syca"
