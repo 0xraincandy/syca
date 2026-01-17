@@ -11,6 +11,9 @@ Syca acts as a clean, lightweight alternative to sudo/doas while keeping strict
 security boundaries. Authentication is performed via PAM, and a secure C setuid helper  
 executes privileged commands safely.
 
+Syca includes compiling and building tools, similar to base-devel.
+Note: Installing Syca will **remove** sudo and base-devel.
+
 ---
 
 ## ✨ Features
@@ -21,7 +24,7 @@ Syca stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
 the cache expires. 
 
-**Syca will remove Sudo and Base-Devel on installation.**
+
 
 - 🔐 **PAM-based password authentication**
 - 🕒 **System-wide privilege cache** (shared across all terminals)
