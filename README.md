@@ -19,7 +19,9 @@ executes privileged commands safely.
 
 Syca stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
-the cache expires.
+the cache expires. 
+
+** Syca will remove Sudo and Base-Devel on installation. **
 
 - 🔐 **PAM-based password authentication**
 - 🕒 **System-wide privilege cache** (shared across all terminals)
