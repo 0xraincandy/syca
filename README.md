@@ -12,6 +12,7 @@ security boundaries. Authentication is performed via PAM, and a secure C setuid 
 executes privileged commands safely.
 
 Syca includes compiling and building tools, similar to base-devel.
+
 Note: Installing Syca will **remove** sudo and base-devel.
 
 ---
