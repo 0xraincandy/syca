@@ -19,7 +19,7 @@ Note: Installing Syca will **remove** sudo and base-devel.
 
 ## Features
 
-- ** Authentication Cache**
+- **Authentication Cache**
 
 Syca stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
