@@ -17,9 +17,9 @@ Note: Installing Syca will **remove** sudo and base-devel.
 
 ---
 
-## ✨ Features
+## Features
 
-- **🔒 Authentication Cache**
+- ** Authentication Cache**
 
 Syca stores authentication securely using a root-owned state file accessed
 through the setuid helper. Once authenticated, you won’t be prompted again until
@@ -27,16 +27,16 @@ the cache expires.
 
 
 
-- 🔐 **PAM-based password authentication**
-- 🕒 **System-wide privilege cache** (shared across all terminals)
-- 👥 User must be added to **group wheel** to be authorized.
-- ⚙️ **Execute commands as root:**
+- **PAM-based password authentication**
+- **System-wide privilege cache** (shared across all terminals)
+- User must be added to **group wheel** to be authorized.
+- **Execute commands as root:**
 ```bash
 syca <command>
 ```
 
 
-- ⏱ **Temporary root access** via privilege cache:
+- **Temporary root access** via privilege cache:
 - Enable root access for a limited time:
 ```bash
 syca --enable <minutes>
@@ -51,7 +51,7 @@ syca --disable
 syca --status
 ```
 
-## 🚀 Usage
+## Usage
 
 Run any command as root via Syca:
 
@@ -73,7 +73,7 @@ syca vim /etc/hosts
 
 ### **Installation from AUR**
 
-## 📦 Installation
+## Installation
 
 ### From the AUR
 
